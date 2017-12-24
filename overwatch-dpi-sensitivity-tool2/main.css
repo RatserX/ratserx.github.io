@@ -1,0 +1,186 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 30/08/2016, 05:50:05 PM
+    Author     : Ratser
+*/
+
+body {
+    max-width: 1600px;
+    min-width: 900px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+}
+
+h1, h2, h3, h4, h5, h6, label, span, a {
+    color: white;
+}
+
+label {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+input, select, textarea {
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.selected {
+    color: red;
+    text-decoration: none;
+}
+
+.wrong {
+    background-color: pink;
+}
+
+.correct {
+    background-color: skyblue;
+}
+
+.hidden {
+    display: none;
+}
+
+header {
+    width: 90%;
+    margin: 1% auto;
+}
+
+.header-text {
+    font-size: 24px;
+}
+
+.header-text a:hover {
+    color: red;
+}
+
+.tool {
+    width: 90%;
+    margin: 1% auto;
+}
+
+.mouse-tool-table {
+    width: 100%;
+}
+
+.mouse-tool-table td {
+    width: 35%;
+    vertical-align: top;
+    padding: 1%;
+    border: 1px;
+    border-style: solid;
+    border-color: grey;
+}
+
+.mouse-tool-table tr td:first-child {
+    width: 15%;
+}
+
+.mouse-tool-table tr td:last-child {
+    width: 15%;
+}
+
+.mouse-tool-field-name {
+    text-align: center;
+    font-size: 20px;
+}
+
+.group-center {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.group-center > label {
+    width: 50%;
+}
+
+.group-center > input {
+    width: 50%;
+}
+
+.group-left {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}
+
+.group-left > label {
+    width: 70%;
+}
+
+.group-left > input {
+    width: 30%;
+}
+
+.group-right {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+}
+
+.group-right > label {
+    width: 70%;
+}
+
+.group-right > input, select, textarea {
+    width: 30%;
+}
+
+.mouse-tool-field-info {
+    text-align: justify;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.mouse-tool-field-formula {
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.25;
+}
+
+.spacer {
+    font-size: 0;
+    height: 20px;
+    line-height: 0;
+}
+
+.sensitivity-tool-table {
+    width: 100%;
+}
+
+.sensitivity-tool-table td {
+    width: 33.3%;
+    vertical-align: top;
+    padding: 1%;
+    border: 1px;
+    border-style: solid;
+    border-color: grey;
+}
+
+.sensitivity-tool-field-name {
+    text-align: center;
+    font-size: 20px;
+}
+
+footer {
+    width: 90%;
+    margin: 2% auto;
+}
+
+#footer-table {
+    width: 100%;
+}
+
+#footer-table td {
+    width: 33.3%;
+    line-height: 1.25;
+}
+

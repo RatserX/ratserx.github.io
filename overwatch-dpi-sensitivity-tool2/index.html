@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Mouse Tool & Sensitivity Converter</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Ratser">
+        <meta name="description" content="Mouse Tool & Source/Overwatch Sensitivity Converter">
+        <meta name="keywords" content="mouse, dpi, sensitivity">
+        <link rel="icon" href="favicon.ico">
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="main.css">
+        <script type="text/javascript" src="main.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="group-left">
+                <div class="header-text">
+                    <span>
+                        <a href="#mouse" onclick="toolSwitch('mouse')" id="mouse-tool-text" class="selected">Mouse Tool</a>
+                        |
+                        <a href="#sensitivity" onclick="toolSwitch('sensitivity')" id="sensitivity-tool-text">Source/Quake & Overwatch Sensitivity Converter</a>
+                    </span>
+                </div>
+            </div>
+        </header>
+        <div class="tool">
+            <div id="mouse-tool">
+                <table class="mouse-tool-table">
+                    <tr>
+                        <td>
+                            <div class="mouse-tool-field-name">
+                                <span>Settings</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group-right">
+                                <label>game engine</label>
+                                <select id="mouse-tool-engine" onchange="mouseToolEngine(); mouseToolCalculate();">
+                                    <option value="0" selected="selected">Source/Quake</option>
+                                    <option value="1">Overwatch</option>
+                                </select>
+                            </div>
+                            <div class="group-right">
+                                <label>in-game resolution width</label>
+                                <input id="mouse-tool-reswidth" type="number" onchange="mouseToolCalculate()" onkeyup="mouseToolCalculate()">
+                            </div>
+                            <div class="group-right">
+                                <label>in-game resolution height</label>
+                                <input id="mouse-tool-resheight" type="number" onchange="mouseToolCalculate()" onkeyup="mouseToolCalculate()">
+                            </div>
+                            <div class="group-right">
+                                <label>windows sensitivity multiplier</label>
+                                <select id="mouse-tool-multiplier" onchange="mouseToolCalculate()">
+                                    <option value="0.0625">1/11 - 0.0625</option>
+                                    <option value="0.0125">2/11 - 0.0125</option>
+                                    <option value="0.25">3/11 - 0.25</option>
+                                    <option value="0.5">4/11 - 0.5</option>
+                                    <option value="0.75">5/11 - 0.75</option>
+                                    <option value="1" selected="selected">6/11 - 1</option>
+                                    <option value="1.5">7/11 - 1.5</option>
+                                    <option value="2">8/11 - 2</option>
+                                    <option value="2.5">9/11 - 2.5</option>
+                                    <option value="3">10/11 - 3</option>
+                                    <option value="3.5">11/11 - 3.5</option>
+                                </select>
+                            </div>
+                            <div class="group-right">
+                                <label>mouse resolution (dpi)</label>
+                                <input id="mouse-tool-dpi" type="number" value="800" onchange="mouseToolCalculate()" onkeyup="mouseToolCalculate()">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group-left">
+                                <input id="mouse-tool-sensitivity" type="number" value="3" onchange="mouseToolCalculate()" onkeyup="mouseToolCalculate()">
+                                <label>in-game sensitivity</label>
+                            </div>
+                            <div class="group-left">
+                                <input id="mouse-tool-fov" type="number" value="90" onchange="mouseToolCalculate()" onkeyup="mouseToolCalculate()">
+                                <label>field of view (fov)</label>
+                            </div>
+                            <div class="group-left">
+                                <input id="mouse-tool-yaw" type="number" value="0.022" onchange="mouseToolCalculate()" onkeyup="mouseToolCalculate()">
+                                <label>m_yaw (0.022 default)</label>
+                            </div>
+                            <div class="group-left">
+                                <input id="mouse-tool-accel" type="number" value="0" onchange="mouseToolCalculate()" onkeyup="mouseToolCalculate()">
+                                <label>cl_mouseaccel (m_accel)</label>
+                            </div>
+                            <div class="group-left">
+                                <input id="mouse-tool-fps" type="number" value="60" onchange="mouseToolCalculate()" onkeyup="mouseToolCalculate()">
+                                <label>frames per second (fps)</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-info">
+                                <span>To see where a specific setting is located in any of the following equations, mouse over it.</span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="spacer"></div>
+                <table class="mouse-tool-table">
+                    <tr>
+                        <td>
+                            <div class="mouse-tool-field-name">
+                                <span>Sensitivity</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group-right">
+                                <label>real sensitivity (inches/360)</label>
+                                <input id="mouse-tool-inches360" type="text" value="" readonly>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-info">
+                                <span>By combining your mouse dpi, windows sensitivity, in-game sensitivity, m_yaw values, and dividing them by 360, you can calculate how many centimeters it takes for you to complete a 360 degree turn. This is called your real sensitivity.</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-formula">
+                                <div class="mouse-tool-source">
+                                    <span>360 / (<span class="tip">y</span> * <span class="tip-2">d</span> * <span class="tip-3">w</span> * <span class="tip-4">s</span>)<br><br>
+                                    <span class="tip">m_yaw</span><br>
+                                    <span class="tip-2">mouse resolution (dpi)</span><br>
+                                    <span class="tip-3">windows sensitivity multiplier</span><br>
+                                    <span class="tip-4">in-game sensitivity</span></span>
+                                </div>
+                                <div class="mouse-tool-overwatch">
+                                    <span class="hidden">(360 * 10 / 3) / (<span class="tip">y</span> * <span class="tip-2">d</span> * <span class="tip-3">w</span> * <span class="tip-4">s</span>)<br><br>
+                                    <span class="tip">m_yaw</span><br>
+                                    <span class="tip-2">mouse resolution (dpi)</span><br>
+                                    <span class="tip-3">windows sensitivity multiplier</span><br>
+                                    <span class="tip-4">in-game sensitivity</span></span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="group-right">
+                                <label>real sensitivity (cm/360)</label>
+                                <input id="mouse-tool-cm360" type="text" value="" readonly>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-info">
+                                <span>For those of you who don't use the metric system, the above is how many inches it takes to complete a 360 degree turn.<br><br>
+                                Note: If you are using accel, then the real sensitivity calculation will give you a "base" sensitivity, which is the sensitivity you would get if you disabled accel.</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-formula">
+                                <div class="mouse-tool-source">
+                                    <span>(360 / (<span class="tip">y</span> * <span class="tip-2">d</span> * <span class="tip-3">w</span> * <span class="tip-4">s</span>)) * 2.54<br><br>
+                                    <span class="tip">m_yaw</span><br>
+                                    <span class="tip-2">mouse resolution (dpi)</span><br>
+                                    <span class="tip-3">windows sensitivity multiplier</span><br>
+                                    <span class="tip-4">in-game sensitivity</span></span>
+                                </div>
+                                <div class="mouse-tool-overwatch">
+                                    <span class="hidden">((360 * 10 / 3) / (<span class="tip">y</span> * <span class="tip-2">d</span> * <span class="tip-3">w</span> * <span class="tip-4">s</span>)) * 2.54<br><br>
+                                    <span class="tip">m_yaw</span><br>
+                                    <span class="tip-2">mouse resolution (dpi)</span><br>
+                                    <span class="tip-3">windows sensitivity multiplier</span><br>
+                                    <span class="tip-4">in-game sensitivity</span></span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="mouse-tool-field-name">
+                                <span>DPI</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group-right">
+                                <label>estimated useful dpi</label>
+                                <input id="mouse-tool-usefuldpi" type="text" value="" readonly>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-info">
+                                <span>The mouse resolution determines the smallest angle you can rotate your view by in game, for a given sensitivity. If you want this smallest angle to be small enough so that you can turn your view by 1 pixel (to the pixel next to where your crosshair is), you need to know what angle that distance of 1 pixel represents on your screen. The projection of the 3D world onto the 2D plane of your screen means the pixels located near the crosshair represent much larger angles than those pixels located at the edges of your screen. If the mouse resolution calculated above is bigger than your current dpi, then your smallest rotation will be larger than 1-pixel's worth of rotation.<br><br>
+                                Please note that this is an estimation of useful dpi. We do not recommend adjusting your setup just to satisfy this value; however, if your current dpi is significantly lower, this may suggest your current setup would benefit from a higher dpi.</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-formula">
+                                <span>(pi * <span class="tip-5">g</span>) / (<span class="tip-6">i</span> * tan(<span class="tip-7">f</span> / 2))<br><br>
+                                <span class="tip-5">in-game resolution width</span><br>
+                                <span class="tip-6">real sensitivity (inches/360)</span><br>
+                                <span class="tip-7">field of view (fov)</span></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="mouse-tool-field-name">
+                                <span>Acceleration</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group-right">
+                                <label>real accel</label>
+                                <input id="mouse-tool-realaccel" type="text" value="" readonly>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-info">
+                                <span>The interpretation of real accel can be thought of as the extra sensitivity given per speed of mouse movement. The real accel value calculated above is the number of extra degrees per cm gained by moving the mouse at 1 cm/s.<br><br>
+                                Note: This is defined for quake 3 style accel (or quake live with cl_mouseAccelStyle 0). Trying to use this for another game engine (i.e. source engine) will not work.</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-formula">
+                                <span>(((<span class="tip-2">d</span> * <span class="tip-3">w</span>) / 2.54)^2 * <span class="tip">y</span> * <span class="tip-8">a</span>) / 1000)<br><br>
+                                <span class="tip-2">mouse resolution (dpi)</span><br>
+                                <span class="tip-3">windows sensitivity multiplier</span><br>
+                                <span class="tip">m_yaw</span><br>
+                                <span class="tip-8">cl_mouseaccel</span></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="mouse-tool-field-name">
+                                <span>Negative Acceleration</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group-right">
+                                <label>maximum speed (meters/second)</label>
+                                <input id="mouse-tool-maxspeed" type="text" value="" readonly>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-info">
+                                <span>If you move your mouse faster than the above speed you will get negative acceleration. This only will occur in games that use mouse pointer input (WM_MOUSEMOVE/GetCursorPos). In order to tell if your game does this, you need to know what type of input your game uses.<br><br>
+                                If you find yourself moving your mouse faster than the speed above and getting negative acceleration, make sure to look at what elements of the equation could be causing this issue. If possible, lower your dpi or raise your resolution and see what that does for your new max speed calculation. If your fpsdrops below the value you have in the settings section, your maximum speed before reaching negative acceleration will also decrease, which makes it easier to reach the point of negative acceleration.<br><br>
+                                Games that use mouse pointer input are not the only cause of negative acceleration. The sensor in your mouse can also effect whether or not you get neg accel past a certain speed. For example, my neg accel value calculated from above is 2.54m/s. However, since I use the wheel mouse optical 1.1a, my sensor will cause me to have neg accel past 1m/s (1.55m/s overclocked).<br><br>
+                                Some information on other mice and the speed they can handle can be found in <a href="http://www.esreality.com/?a=longpost&id=1265679&page=1">ESReality's MouseScore from 2007</a>. There was also a test done specifically on the <a href="http://www.esreality.com/?a=longpost&id=1300293&page=3">deathadder</a> at a later date.</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-formula">
+                                <span>(<span class="tip-5">g</span> * <span class="tip-9">fps</span>) / (2 * ((<span class="tip-2">d</span> * <span class="tip-3">w</span>) / 0.0254))<br><br>
+                                <span class="tip-5">in-game resolution width</span><br>
+                                <span class="tip-9">frames per second (fps)</span><br>
+                                <span class="tip-2">mouse resolution (dpi)</span><br>
+                                <span class="tip-3">windows sensitivity multiplier</span></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="mouse-tool-field-name">
+                                <span>Maximum Sensitivity</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group-right">
+                                <label>maximum sensitivity</label>
+                                <input id="mouse-tool-maxsensitivity" type="text" value="" readonly>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-info">
+                                <span>In order to make sure that your radial movements will be less than a pixels radian value, we can use the following formula, which will calculate the maximum sensitivity before this "skipping" occurs.<br><br>
+                                It is not recommended to set your sensitivity to these values as lower ones will allow for greater precision, however if your current settings are considerably lower it may suggest that you could benefit from a higher sensitivity.</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-formula">
+                                <div class="mouse-tool-source">
+                                    <span>(360 * tan(<span class="tip-7">f</span> / 2)) / (pi * <span class="tip-5">g</span> * <span class="tip">y</span>)<br><br>
+                                    <span class="tip-7">field of view (fov)</span><br>
+                                    <span class="tip-5">in-game resolution width</span><br>
+                                    <span class="tip">m_yaw</span><br>
+                                </div>
+                                <div class="mouse-tool-overwatch">
+                                    <span class="hidden">((360 * 10 / 3) * tan(<span class="tip-7">f</span> / 2)) / (pi * <span class="tip-5">g</span> * <span class="tip">y</span>)<br><br>
+                                    <span class="tip-7">field of view (fov)</span><br>
+                                    <span class="tip-5">in-game resolution width</span><br>
+                                    <span class="tip">m_yaw</span><br>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="mouse-tool-field-name">
+                                <span>Maximum Yaw</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group-right">
+                                <label>maximum yaw</label>
+                                <input id="mouse-tool-maxyaw" type="text" value="" readonly>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-info">
+                                <span>We can use this formula to find our maximum m_yaw/m_pitch values for a given sensitivity before we start to "skip pixels".<br><br>
+                                It is not recommended to set your m_yaw/m_pitch to these values as lower ones will allow for greater precision, however if your current settings are considerably lower it may suggest that you could benefit from a higher sensitivity.</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-formula">
+                                <div class="mouse-tool-source">
+                                    <span>(360 * tan(<span class="tip-7">f</span> / 2)) / (pi * <span class="tip-5">g</span> * <span class="tip-4">s</span>)<br><br>
+                                    <span class="tip-7">field of view (fov)</span><br>
+                                    <span class="tip-5">in-game resolution width</span><br>
+                                    <span class="tip-4">in-game sensitivity</span><br>
+                                </div>
+                                <div class="mouse-tool-overwatch">
+                                    <span class="hidden">((360 * 10 / 3) * tan(<span class="tip-7">f</span> / 2)) / (pi * <span class="tip-5">g</span> * <span class="tip-4">s</span>)<br><br>
+                                    <span class="tip-7">field of view (fov)</span><br>
+                                    <span class="tip-5">in-game resolution width</span><br>
+                                    <span class="tip-4">in-game sensitivity</span><br>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="mouse-tool-field-name">
+                                <span>Shannon's Law</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group-right">
+                                <label>samples/degree</label>
+                                <input id="mouse-tool-rawdotdegree" type="text" value="" readonly>
+                            </div>
+                            <div class="group-right">
+                                <label>samples/degree (Shannon's Law)</label>
+                                <input id="mouse-tool-dotdegree" type="text" value="" readonly>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-info">
+                                <span>A low DPI value can cause the reticle to skip over hitboxes.<br><br>
+                                The overall sampling rate of a mouse (samples per degree) is calculated using the DPI, in-game sensitivity and FOV. If the sampling rate is 2 times bigger than the resolution of your screen for a single degree, then your settings are enough to reach any part of the screen.<br><br>
+                                The sampling rate must be twice as big as your screen resolution due to Shannon's Law. This means the calculated sample/degree will be halved.</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-formula">
+                                <span>(<span class="tip-2">d</span> * <span class="tip-6">i</span> / 360) / 2<br><br>
+                                <span class="tip-2">mouse resolution (dpi)</span><br>
+                                <span class="tip-6">real sensitivity (inches/360)</span><br>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="group-right">
+                                <label>aspect ratio</label>
+                                <input id="mouse-tool-aspectratio" type="text" value="" readonly>
+                            </div>
+                            <div class="group-right">
+                                <label>pixel/degree</label>
+                                <input id="mouse-tool-pixeldegree" type="text" value="" readonly>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-info">
+                                <span>If the Shannon's Law sample per degree value is higher than your screen's pixel/degree, the input field will turn blue, meaning it's fine. Otherwise, it will turn red.<br><br>
+                                (Note from the dev: This formula has been listed as <a href="https://www.reddit.com/r/Competitiveoverwatch/comments/50gut9/list_of_misconceptions_on_sensitivity_zoom_and/">inaccurate</a> by user everythingllbeok. Still, <a href="https://www.reddit.com/r/Competitiveoverwatch/comments/50gut9/list_of_misconceptions_on_sensitivity_zoom_and/d748lgi">Pyrolistical says it is correct</a>)</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mouse-tool-field-formula">
+                                <span>(<span class="tip-10">rh</span> / <span class="tip-11">rg</span> * <span class="tip-12">h</span>) / <span class="tip-7">f</span><br><br>
+                                <span class="tip-10">aspect ratio height</span><br>
+                                <span class="tip-11">aspect ratio width</span><br>
+                                <span class="tip-12">in-game resolution height</span><br>
+                                <span class="tip-7">field of view (fov)</span></span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="tool">
+            <div id="sensitivity-tool" class="hidden">
+                <table class="sensitivity-tool-table">
+                    <tr>
+                        <td>
+                            <div class="sensitivity-tool-field-name">
+                                <span>Settings</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group-right">
+                                <label>convert to</label>
+                                <select id="sensitivity-tool-conversion" onchange="sensitivityToolConversion()">
+                                    <option value="0">Source/Quake</option>
+                                    <option value="1" selected="selected">Overwatch</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div class="spacer"></div>
+                <table class="sensitivity-tool-table">
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="sensitivity-tool-field-title">
+                                <span>Source/Quake</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="sensitivity-tool-field-title">
+                                <span>Overwatch</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="sensitivity-tool-field-name">
+                                <span>Sensitivity</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group-center">
+                                <input id="sensitivity-tool-source-dpi" class="sensitivity-tool-source" type="number" value="3" onchange="sensitivityToolCalculate()" onkeyup="sensitivityToolCalculate()">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group-center">
+                                <input id="sensitivity-tool-overwatch-dpi" class="sensitivity-tool-overwatch" type="number" value="" onchange="sensitivityToolCalculate()" onkeyup="sensitivityToolCalculate()" readonly>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="sensitivity-tool-field-name">
+                                <span>Scope Sensitivity</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group-right">
+                                <label>Scope Ratio (CS:GO)</label>
+                                <input id="sensitivity-tool-source-scope-csgo" class="sensitivity-tool-source" type="number" value="1" onchange="sensitivityToolCalculate()" onkeyup="sensitivityToolCalculate()">
+                            </div>
+                            <div class="group-right">
+                                <label>Scope Ratio (TF2)</label>
+                                <input id="sensitivity-tool-source-scope-tf2" class="sensitivity-tool-source" type="number" value="1" onchange="sensitivityToolCalculate()" onkeyup="sensitivityToolCalculate()">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group-left">
+                                <input id="sensitivity-tool-overwatch-scope-csgo" class="sensitivity-tool-overwatch" type="number" value="" onchange="sensitivityToolCalculate()" onkeyup="sensitivityToolCalculate()" readonly>
+                                <label>Scope Sensitivity (CS:GO)</label>
+                            </div>
+                            <div class="group-left">
+                                <input id="sensitivity-tool-overwatch-scope-tf2" class="sensitivity-tool-overwatch" type="number" value="" onchange="sensitivityToolCalculate()" onkeyup="sensitivityToolCalculate()" readonly>
+                                <label>Scope Sensitivity (TF2)</label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="spacer"></div>
+        <footer>
+            <table id="footer-table">
+                <tr>
+                    <td>
+                        <div class="group-left">
+                            <span>Made by:<br>
+                            <a target="_blank" href="https://steamcommunity.com/profiles/76561198036183927/">Ratser</a>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="group-center">
+                            <span>Based on:<br>
+                            <a target="_blank" href="http://www.funender.com/quake/mouse/index.html">Funender Mouse Tool</a><br>
+                            <a target="_blank" href="https://pyrolistical.github.io/overwatch-dpi-tool/">Overwatch DPI Tool</a> by <a target="_blank" href="https://twitter.com/pyrolistical">@pyrolistical</a><br>
+                            <a target="_blank" href="https://jscalc.io/calc/djyxBymfcWCIgD4f">Overwatch Sensitivity Calculator</a> by <a target="_blank" href="https://www.twitch.tv/sirdodgy">SirDodgy</a>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="group-right">
+                            <span>Using data from:<br>
+                            <a target="_blank" href="http://www.overclock.net/t/1251156/an-overview-of-mouse-technology">An Overview of Mouse Technology</a> by <a target="_blank" href="http://www.overclock.net/u/267624/wo1fwood">wo1fwood</a><br>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </footer>
+    </body>
+</html>
