@@ -1,0 +1,417 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Override */
+
+h1 { 
+    display: block;
+    font-size: 2em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+h3 { 
+    display: block;
+    font-size: 1.17em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+h4 { 
+    display: block;
+    font-size: 1em;
+    margin-top: 1.33em;
+    margin-bottom: 1.33em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+h5 { 
+    display: block;
+    font-size: .83em;
+    margin-top: 1.67em;
+    margin-bottom: 1.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+h6 { 
+    display: block;
+    font-size: .67em;
+    margin-top: 2.33em;
+    margin-bottom: 2.33em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+/* Main */
+
+body {
+    width: 100%;
+    height: 100%;
+    font-family: Verdana, Geneva, sans-serif;
+    background-color: rgba(0, 0, 0, 1);
+    color: rgba(144, 153, 161, 1);
+}
+
+header, div#main, footer {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+header {
+    background-color: rgba(23, 26, 33, 1);
+    color: rgba(255, 255, 255, 1);
+}
+
+#header-title {
+    padding: 10px 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#main {
+    min-height: 100%;
+    margin: 0 auto -50px;
+    background-color: rgba(27, 40, 56, 1);
+}
+
+#main-steps {
+    padding: 0px 80px;
+}
+
+#main-steps [data-css="step"] {
+    margin: 50px 0px;
+    color: rgba(255, 255, 255, 1);
+}
+
+#main-steps [data-css="step-title"] {
+    padding: 10px;
+    background-color: rgba(13, 19, 27, 1);
+}
+
+#main-steps [data-css="step-title-text"] {
+    margin: 0;
+}
+
+#main-steps [data-css="step-action"] {
+    padding: 10px;
+    background-color: rgba(39, 47, 56, 1);
+}
+
+#main-steps [data-css="step-action-code"] {
+    height: 300px;
+    overflow-y: scroll;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#main-steps [data-css="step-action-code"]::-webkit-scrollbar {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#main-steps [data-css="step-action-code"]::-webkit-scrollbar-thumb {
+    background-color: rgba(33,101,138,1);
+}
+
+#main-steps [data-css="step-action-code"] pre {
+    padding: 10px 20px;
+    white-space: pre-wrap;
+}
+
+#main-steps [data-css="step-action-code"] code:focus {
+    outline: none;
+}
+
+#main-steps [data-css="step-action-copy-button"] {
+    width: 100%;
+    padding: 10px 0px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: rgba(255, 255, 255, 1);
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#main-steps [data-css="step-action-copy-button"]:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+#main-steps [data-css="step-action-link-button"] {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 0px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: rgba(255, 255, 255, 1);
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#main-steps [data-css="step-action-link-button"]:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+#main-steps [data-css="step-action-console"] ol {
+    padding: 0px 0px 0px 40px;
+}
+
+#main-steps [data-css="step-action-console"] li {
+    padding: 5px 0px;
+    list-style-type: decimal;
+}
+
+#main-steps [data-css="step-action-console-help"] {
+    color: rgba(255, 255, 255, 1) !important;
+    text-decoration: none;
+}
+
+#main-steps [data-css="step-action-console-help"]:hover {
+    text-decoration: underline;
+}
+
+#main-steps [data-css="step-action-finish"] {
+    text-align: center;
+}
+
+#main-steps [data-css="step-action-finish"] img {
+    width: 75%;
+}
+
+footer {
+    height: 50px;
+    align-items: center;
+    padding: 10px 0px;
+    background-color: rgba(27, 40, 56, 0.4);
+}
+
+#footer-info {
+    display: flex;
+    float: left;
+    width: 50%;
+    height: 100%;
+    align-items: center;
+}
+
+#footer-info [data-css="info"] {
+    width: 100%;
+    padding: 0px 0px 0px 40px;
+    text-align: left;
+}
+
+#footer-info [data-css="info-author"] {
+    text-decoration: none;
+    color: rgba(144, 153, 161, 1);
+}
+
+#footer-info [data-css="info-author"]:hover {
+    text-decoration: underline;
+}
+
+#footer-info [data-css="info-date"] {
+    display: block;
+}
+
+#footer-donation {
+    display: flex;
+    float: left;
+    width: 50%;
+    height: 100%;
+    align-items: center;
+}
+
+#footer-donation [data-css="form"] {
+    width: 100%;
+    padding: 0px 40px 0px 0px;
+    text-align: right;
+}
+
+#footer-donation [type="submit"] {
+    border: none;
+    text-decoration: none;
+    text-transform: uppercase;
+    background: none;
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+}
+
+#footer-donation [type="submit"] img {
+    height: 16px;
+    vertical-align: bottom;
+}
+
+#alert {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(23, 26, 33, 0.8);
+    box-shadow: 0px 0px 15px 5px rgba(84, 133, 183, 0.2);
+    color: rgba(255, 255, 255, 1);
+    transition: visibility 0s linear 0.5s, opacity 0.5s linear;
+}
+
+#alert.active {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+
+@media (max-width: 575px) {
+    header, div#main, footer {
+        width: 100%;
+    }
+
+    #header-title {
+        text-align: center;
+    }
+
+    #main-steps {
+        padding: 0px 0px;
+    }
+    
+    #footer-info {
+        width: 100%;
+        height: auto;
+    }
+    
+    #footer-info [data-css="info"] {
+        padding: 0px 10px;
+    }
+    
+    #footer-info [data-css="info-author"] {
+        float: left;
+        width: 70%;
+        text-align: left;
+    }
+    
+    #footer-info [data-css="info-date"] {
+        float: left;
+        width: 30%;
+        text-align: right;
+    }
+
+    #footer-donation {
+        width: 100%;
+    }
+
+    #footer-donation [data-css="form"] {
+        padding: 0px 10px;
+        text-align: center;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    header, div#main, footer {
+        width: 95%;
+    }
+
+    #header-title {
+        text-align: center;
+    }
+
+    #main-steps {
+        padding: 0px 20px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    header, div#main, footer {
+        width: 90%;
+    }
+
+    #header-title {
+        text-align: center;
+    }
+
+    #main-steps {
+        padding: 0px 40px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    header, div#main, footer {
+        width: 85%;
+    }
+
+    #main-steps {
+        padding: 0px 60px;
+    }
+}
+
+@media (min-width: 1200px) {
+    /* Why is this here? */
+}
