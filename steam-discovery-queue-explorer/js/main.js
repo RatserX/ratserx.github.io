@@ -3,7 +3,97 @@ var hackerImages = [
     "sombra_by_witchtaunter-danekeh.gif",
     "source.gif",
     "vu8uzzl.gif"
-]
+];
+
+var maxQueueNumber = 3;
+var perf = {
+    xhr: function(settings) {
+        settings.async = settings.async || true;
+        settings.user = settings.user || null;
+        settings.password = settings.password || null;
+        settings.mediatype = settings.mediatype || "";
+        settings.charset = settings.charset || "";
+        settings.boundary = settings.boundary || "";
+        settings.responseType = settings.responseType || "text";
+        settings.timeout = settings.timeout || 0;
+        settings.withCredentials = settings.withCredentials || false;
+        settings.body = settings.body || null;
+        settings.promise = (typeof Promise != "undefined" ? (settings.promise || false) : false);
+
+        var executor = function(resolve, reject) {
+            var contentType = "";
+            contentType += settings.mediatype;
+            contentType += (contentType != "" ? ";" : "");
+            contentType += (settings.charset != "" ? "charset=" + settings.charset : "");
+            contentType += (contentType != "" ? ";" : "");
+            contentType += (settings.boundary != "" ? "boundary=" + settings.boundary : "");
+
+            var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.open(settings.method, settings.url, settings.async, settings.user, settings.password);
+            xmlHttpRequest.setRequestHeader("Content-Type", contentType);
+            xmlHttpRequest.responseType = settings.responseType;
+            xmlHttpRequest.timeout = settings.timeout;
+            xmlHttpRequest.withCredentials = settings.withCredentials;
+            
+            xmlHttpRequest.onreadystatechange = function() {
+                var data = {
+                    xmlHttpRequest: this,
+                    event: event
+                }
+
+                if (this.readyState == 4) {
+                    if (this.status == 200) {
+                        if (settings.promise) {
+                            resolve(data);
+                        }
+                        
+                        if (settings.hasOwnProperty("onsuccess")) {
+                            if (typeof settings.onsuccess == "function") {
+                                settings.onsuccess(data);
+                            }
+                        }
+                    } else {
+                        if (settings.promise) {
+                            reject(data);
+                        }
+                        
+                        if (settings.hasOwnProperty("onerror")) {
+                            if (typeof settings.onerror == "function") {
+                                settings.onerror(data);
+                            }
+                        }
+                    }
+                }
+            }
+            
+            xmlHttpRequest.ontimeout = function() {
+                var data = {
+                    xmlHttpRequest: this,
+                    event: event
+                }
+
+                if (Object.prototype.hasOwnProperty.call(settings, "ontimeout")) {
+                    if (typeof settings.ontimeout == "function") {
+                        if (settings.promise) {
+                            reject(data);
+                        }
+                        
+                        settings.ontimeout(data);
+                    }
+                }
+            }
+
+            xmlHttpRequest.send(settings.body);
+            return true;
+        }
+
+        if (settings.promise) {
+            return new Promise(executor);
+        } else {
+            return executor(null, null);
+        }
+    }
+}
 
 function copyCode(element, event) {
     event.preventDefault();
@@ -64,6 +154,23 @@ function alertMessage(text, timeout) {
     }, timeout);
 }
 
+function loadCodeSnippet() {
+    var settings = {
+        mediatype: "application/x-www-form-urlencoded",
+        charset: "utf-8",
+        method: "GET",
+        url: "https://raw.githubusercontent.com/RatserX/steam-discovery-queue-explorer/master/sdqe.js",
+        onsuccess: function(data) {
+            document.getElementById("main-steps-code").innerHTML = data.xmlHttpRequest.responseText;
+        },
+        onerror: function(data) {
+            //TODO: Take the Pineapple Pizza and $5 from Katie
+        }
+    };
+    
+    perf.xhr(settings);
+}
+
 function loadHackerImage() {
     var hackerImagesLength = hackerImages.length;
     var index = Math.floor((Math.random() * hackerImagesLength) + 0);
@@ -76,4 +183,5 @@ window.onload = function() {
     //TODO: Give a Pineapple Pizza to Katie
 }
 
+loadCodeSnippet();
 loadHackerImage();
