@@ -108,3 +108,132 @@ h6 {
     margin-right: 0;
     font-weight: bold;
 }
+
+/* Nav */
+.nav {
+    display: flex;
+    border-bottom: 1px solid rgba(54, 56, 58, 1);
+}
+
+.nav .nav-item {
+    margin: 0px 16px 0px 0px;
+    padding: 16px 8px;
+    color: rgba(173, 175, 177, 1);
+    text-decoration: none;
+}
+
+.nav .nav-item:hover {
+    border-bottom: 2px solid rgba(54, 56, 58, 1);
+}
+
+.nav .nav-item.active {
+    color: rgba(230, 230, 228, 1);
+    border-bottom: 2px solid rgba(221, 135, 68, 1);
+}
+
+/* Main */
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(13, 13, 13, 1);
+    color: rgba(28, 28, 27, 1);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+header, div#main, footer {
+    margin: auto;
+    overflow: hidden;
+}
+
+header {
+    width: 100%;
+    background-color: rgba(230, 230, 228, 1);
+    color: rgba(28, 28, 27, 1);
+}
+
+#header-title {
+    margin: 0px 10px;
+}
+
+#main {
+    width: 60%;
+    min-height: 100%;
+    margin: 24px auto 0px !important;
+}
+
+footer {
+    width: 100%;
+}
+
+#main-profile {
+    display: block;
+    -ms-display: inline;
+    float: left;
+    max-width: 230px;
+    width: 20%;
+}
+
+#main-profile [data-css="image"] {
+    width: 100%;
+}
+
+#main-profile [data-css="user-name"] {
+    display: block;
+    margin: 0px;
+    padding: 16px 0px;
+    color: rgba(170, 167, 163, 1);
+    font-weight: 300;
+}
+
+#main-profile [data-css="real-name"] {
+    display: block;
+    margin: 0px 0px 16px 0px;
+    color: rgba(120, 189, 221, 1);
+    font-weight: 300;
+}
+
+#main-info {
+    display: block;
+    -ms-display: inline;
+    float: left;
+    width: 80%;
+}
+
+#main-info [data-css="box"] {
+    margin-bottom: 24px;
+    padding: 8px 16px;
+    background-color: rgba(20, 23, 26, 1);
+    color: rgba(174, 201, 226, 1);
+    border: 1px solid rgba(30, 45, 57, 1);
+    border-radius: 3px;
+}
+
+#main-info [data-css="project"] {
+    margin: 24px 0px 0px 0px;
+}
+
+#main-info [data-css="project-header"] {
+    margin: 0px 0px 8px 0px;
+    color: rgba(230, 230, 228, 1);
+    font-weight: 300;
+}
+
+#main-info [data-css="project-box"] {
+    display: flex;
+}
+
+#main-info [data-css="project-box-item"] {
+    margin: 0px 0px 16px 0px;
+    padding: 16px;
+    text-decoration: none;
+    color: rgba(120, 189, 221, 1);
+    border: 1px solid rgba(54, 56, 58, 1);
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+#main-info [data-css="project-box-item"]:hover {
+    text-decoration: underline;
+    background-color: rgba(54, 56, 58, 1);
+}
