@@ -161,7 +161,7 @@ function loadCodeSnippet() {
         method: "GET",
         url: "https://raw.githubusercontent.com/RatserX/steam-discovery-queue-explorer/master/sdqe.js",
         onsuccess: function(data) {
-            document.getElementById("main-steps-code").innerHTML = data.xmlHttpRequest.responseText;
+            document.getElementById("main-steps-code").innerHTML = "\n" + data.xmlHttpRequest.responseText;
         },
         onerror: function(data) {
             //TODO: Take the Pineapple Pizza and $5 from Katie
