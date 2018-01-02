@@ -5,7 +5,6 @@ var hackerImages = [
     "vu8uzzl.gif"
 ];
 
-var maxQueueNumber = 3;
 var perf = {
     xhr: function(settings) {
         settings.async = settings.async || true;
@@ -38,8 +37,9 @@ var perf = {
             xmlHttpRequest.onreadystatechange = function() {
                 var data = {
                     xmlHttpRequest: this,
-                    event: event
-                }
+                    event: event,
+                    settings: settings
+                };
 
                 if (this.readyState == 4) {
                     if (this.status == 200) {
@@ -64,13 +64,14 @@ var perf = {
                         }
                     }
                 }
-            }
+            };
             
             xmlHttpRequest.ontimeout = function() {
                 var data = {
                     xmlHttpRequest: this,
-                    event: event
-                }
+                    event: event,
+                    settings: settings
+                };
 
                 if (Object.prototype.hasOwnProperty.call(settings, "ontimeout")) {
                     if (typeof settings.ontimeout == "function") {
@@ -81,11 +82,11 @@ var perf = {
                         settings.ontimeout(data);
                     }
                 }
-            }
+            };
 
             xmlHttpRequest.send(settings.body);
             return true;
-        }
+        };
 
         if (settings.promise) {
             return new Promise(executor);
@@ -93,7 +94,7 @@ var perf = {
             return executor(null, null);
         }
     }
-}
+};
 
 function copyCode(element, event) {
     event.preventDefault();
