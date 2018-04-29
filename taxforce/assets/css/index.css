@@ -1,0 +1,14 @@
+#carouselBusinessControls {
+    box-shadow: 0px 0px 1px 0px rgba(34, 30, 31, 1.0);
+}
+
+.service.description {
+    font-size: 14px;
+}
+
+.service.detail {
+    font-size: 12px;
+    border: 1px solid rgba(117, 26, 35, 1.0);
+    border-radius: 0px;
+    cursor: pointer;
+}
