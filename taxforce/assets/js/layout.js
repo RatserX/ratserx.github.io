@@ -12,6 +12,6 @@ var layout = {
     }
 }
 
-window.onload = function () {
+$(document).ready(function () {
     layout.load();
-}
+});
