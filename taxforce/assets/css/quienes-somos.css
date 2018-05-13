@@ -1,56 +1,53 @@
-#carouselBusinessControls {
+#carouselAboutControls {
     box-shadow: 0px 0px 1px 0px rgba(34, 30, 31, 1.0);
 }
 
-#carouselBusinessControls .carousel-item {
+#carouselAboutControls .carousel-item {
     height: 350px;
     background-position: center;
     background-size: cover;
 }
 
-#carouselBusinessControls #carousel-item-1 {
+#carouselAboutControls #carousel-item-1 {
     background-image: url("http://csconsulting.com.pe/data1/images/servicios.jpg");
 }
 
-#carouselBusinessControls #carousel-item-2 {
+#carouselAboutControls #carousel-item-2 {
     background-image: url("http://csconsulting.com.pe/data1/images/consultoria.jpg");
 }
 
-#carouselBusinessControls #carousel-item-3 {
+#carouselAboutControls #carousel-item-3 {
     background-image: url("http://csconsulting.com.pe/data1/images/tasaciones.jpg");
 }
 
-.service.description {
+.about.image {
+    height: 150px;
+}
+
+.about.name {
     font-size: 14px;
 }
 
-.service.detail {
-    font-size: 12px;
-    border: 1px solid rgba(117, 26, 35, 1.0);
-    border-radius: 0px;
-    cursor: pointer;
-}
-
 @media (max-width: 1199.98px) {
-    #carouselBusinessControls .carousel-item {
+    #carouselAboutControls .carousel-item {
         height: 300px;
     }
 }
 
 @media (max-width: 991.98px) {
-    #carouselBusinessControls .carousel-item {
+    #carouselAboutControls .carousel-item {
         height: 250px;
     }
 }
 
 @media (max-width: 767.98px) {
-    #carouselBusinessControls .carousel-item {
+    #carouselAboutControls .carousel-item {
         height: 200px;
     }
 }
 
 @media (max-width: 575.98px) {
-    #carouselBusinessControls .carousel-item {
+    #carouselAboutControls .carousel-item {
         height: 150px;
     }
 }
