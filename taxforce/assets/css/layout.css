@@ -11,11 +11,11 @@
 }
 
 .background-color.bc-3-10, .background-color.bc-h-3-10:hover {
-    background-color: rgba(117, 26, 35, 1.0) !important;
+    background-color: rgba(35, 35, 63, 1.0) !important;
 }
 
 .background-color.bc-4-10, .background-color.bc-h-4-10:hover {
-    background-color: rgba(34, 30, 31, 1.0) !important;
+    background-color: rgba(247, 185, 23, 1.0) !important;
 }
 
 .background-color.bc-5-10, .background-color.bc-h-5-10:hover {
@@ -23,7 +23,7 @@
 }
 
 .background-color.bc-6-10, .background-color.bc-h-6-10:hover {
-    background-color: rgba(116, 116, 116, 1.0) !important;
+    background-color: rgba(93, 93, 93, 1.0) !important;
 }
 
 .color {
@@ -39,11 +39,11 @@
 }
 
 .color.c-3-10, .color.c-h-3-10:hover {
-    color: rgba(117, 26, 35, 1.0) !important;
+    color: rgba(35, 35, 63, 1.0) !important;
 }
 
 .color.c-4-10, .color.c-h-4-10:hover {
-    color: rgba(34, 30, 31, 1.0) !important;
+    color: rgba(247, 185, 23, 1.0) !important;
 }
 
 .color.c-5-10, .color.c-h-5-10:hover {
@@ -51,7 +51,7 @@
 }
 
 .color.c-6-10, .color.c-h-6-10:hover {
-    color: rgba(116, 116, 116, 1.0) !important;
+    color: rgba(93, 93, 93, 1.0) !important;
 }
 
 .separator-right {

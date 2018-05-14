@@ -1,5 +1,5 @@
 #carouselBusinessControls {
-    box-shadow: 0px 0px 1px 0px rgba(34, 30, 31, 1.0);
+    box-shadow: 0px 0px 1px 0px rgba(35, 35, 63, 1.0);
 }
 
 #carouselBusinessControls .carousel-item {
@@ -26,7 +26,7 @@
 
 .service.detail {
     font-size: 12px;
-    border: 1px solid rgba(117, 26, 35, 1.0);
+    border: 1px solid rgba(35, 35, 63, 1.0);
     border-radius: 0px;
     cursor: pointer;
 }
