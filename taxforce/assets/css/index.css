@@ -20,6 +20,10 @@
     background-image: url("../img/gallery/gallery-3.jpg");
 }
 
+#carouselBusinessControls #carousel-item-4 {
+    background-image: url("../img/gallery/gallery-4.jpg");
+}
+
 .service.description {
     font-size: 14px;
 }
