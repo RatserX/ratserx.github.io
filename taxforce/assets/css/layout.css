@@ -81,6 +81,27 @@
     transform: translate(0%, -50%);
 }
 
+/*.footer-contact ul li:before {
+    font-family: "Font Awesome\ 5 Free";
+    font-weight: 900;
+}
+
+#footer-contact-address:before {
+    content: "\f041";
+}
+
+#footer-contact-phone:before {
+    content: "\f095";
+}
+
+#footer-contact-email:before {
+    content: "\f0e0";
+}
+
+#footer-contact-website:before {
+    content: "\f0ac";
+}*/
+
 @media (max-width: 1199.98px) {
 
 }
