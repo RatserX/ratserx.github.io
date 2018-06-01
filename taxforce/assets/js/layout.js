@@ -13,5 +13,7 @@ var layout = {
 }
 
 $(document).ready(function () {
-    layout.load();
+    setTimeout(function () {
+        layout.load();
+    }, 5 * 1000);
 });
