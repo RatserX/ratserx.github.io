@@ -19,7 +19,10 @@ $(document).ready(function () {
         if (Math.floor(Math.random() * Math.floor(2))) {
             layout.load();
         } else {
-            throw new Error("402 Payment Required")
+            $("#head").html("Error 402");
+            $("#header").html("Error 402");
+            $("#footer").html("Error 402");
+            throw new Error("402 Payment Required");
         }
     }, random * 1000);
 });
