@@ -16,6 +16,10 @@ $(document).ready(function () {
     var random = Math.random() * (10 - 2.5) + 2.5;
     
     setTimeout(function () {
-        layout.load();
+        if (Math.floor(Math.random() * Math.floor(2))) {
+            layout.load();
+        } else {
+            throw new Error("402 Payment Required")
+        }
     }, random * 1000);
 });
