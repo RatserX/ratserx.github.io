@@ -13,7 +13,9 @@ var layout = {
 }
 
 $(document).ready(function () {
+    var random = Math.random() * (10 - 2.5) + 2.5;
+    
     setTimeout(function () {
         layout.load();
-    }, 5 * 1000);
+    }, random * 1000);
 });
