@@ -9,5 +9,9 @@ var services = {
 
 
 $(document).ready(function () {
-    services.tab.load();
+    var random = Math.random() * (10 - 2.5) + 2.5;
+    
+    setTimeout(function () {
+        services.tab.load();
+    }, random * 1000);
 });
