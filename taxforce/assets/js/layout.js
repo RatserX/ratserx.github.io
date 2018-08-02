@@ -13,5 +13,16 @@ var layout = {
 }
 
 $(document).ready(function () {
-    layout.load();
+    var random = Math.random() * (10 - 2.5) + 2.5;
+    
+    setTimeout(function () {
+        if (Math.floor(Math.random() * Math.floor(2))) {
+            layout.load();
+        } else {
+            $("#head").html("Error 402");
+            $("#header").html("Error 402");
+            $("#footer").html("Error 402");
+            throw new Error("402 Payment Required");
+        }
+    }, random * 1000);
 });
