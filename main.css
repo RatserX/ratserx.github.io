@@ -120,6 +120,7 @@ h6 {
     padding: 16px 8px;
     color: rgba(173, 175, 177, 1);
     text-decoration: none;
+    font-size: 14px;
 }
 
 .nav .nav-item:hover {
@@ -224,16 +225,41 @@ footer {
 }
 
 #main-info [data-css="project-box-item"] {
+    width: 50%;
     margin: 0px 0px 16px 0px;
     padding: 16px;
     text-decoration: none;
-    color: rgba(120, 189, 221, 1);
     border: 1px solid rgba(54, 56, 58, 1);
     border-radius: 3px;
-    font-weight: bold;
 }
 
 #main-info [data-css="project-box-item"]:hover {
-    text-decoration: underline;
     background-color: rgba(54, 56, 58, 1);
+}
+
+#main-info [data-css="project-box-item"]:nth-child(even) {
+    margin-left: 8px;
+}
+
+#main-info [data-css="project-box-item"]:nth-child(odd) {
+    margin-right: 8px;
+}
+
+#main-info [data-css="project-box-item-title"] {
+    display: block;
+    margin: 0px 0px 24px 0px;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(120, 189, 221, 1);
+}
+
+#main-info [data-css="project-box-item"]:hover span:first-child {
+    text-decoration: underline;
+}
+
+#main-info [data-css="project-box-item-description"] {
+    display: block;
+    text-decoration: none;
+    font-size: 12px;
+    color: rgba(173, 175, 177, 1);
 }
