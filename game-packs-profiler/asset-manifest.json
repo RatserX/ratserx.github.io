@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/game-packs-profiler/static/css/main.c5eaa5be.chunk.css",
+    "main.js": "/game-packs-profiler/static/js/main.bc44df76.chunk.js",
+    "main.js.map": "/game-packs-profiler/static/js/main.bc44df76.chunk.js.map",
+    "runtime-main.js": "/game-packs-profiler/static/js/runtime-main.630a136b.js",
+    "runtime-main.js.map": "/game-packs-profiler/static/js/runtime-main.630a136b.js.map",
+    "static/css/2.47e06e2e.chunk.css": "/game-packs-profiler/static/css/2.47e06e2e.chunk.css",
+    "static/js/2.f153dfa7.chunk.js": "/game-packs-profiler/static/js/2.f153dfa7.chunk.js",
+    "static/js/2.f153dfa7.chunk.js.map": "/game-packs-profiler/static/js/2.f153dfa7.chunk.js.map",
+    "index.html": "/game-packs-profiler/index.html",
+    "precache-manifest.643e0f95933b0a1dbb0288a4ffc97b22.js": "/game-packs-profiler/precache-manifest.643e0f95933b0a1dbb0288a4ffc97b22.js",
+    "service-worker.js": "/game-packs-profiler/service-worker.js",
+    "static/css/2.47e06e2e.chunk.css.map": "/game-packs-profiler/static/css/2.47e06e2e.chunk.css.map",
+    "static/css/main.c5eaa5be.chunk.css.map": "/game-packs-profiler/static/css/main.c5eaa5be.chunk.css.map",
+    "static/js/2.f153dfa7.chunk.js.LICENSE.txt": "/game-packs-profiler/static/js/2.f153dfa7.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.630a136b.js",
+    "static/css/2.47e06e2e.chunk.css",
+    "static/js/2.f153dfa7.chunk.js",
+    "static/css/main.c5eaa5be.chunk.css",
+    "static/js/main.bc44df76.chunk.js"
+  ]
+}
