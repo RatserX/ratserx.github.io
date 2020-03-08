@@ -1,6 +1,7 @@
 <html>
     <body>
         <form onsubmit="alert('Nota: ' + decryptGrade(this.encryptedGrade.value));return false;">
+            <label>Encrypted Grade</label>
             <input type="text" name="encryptedGrade" />
             <input type="submit" value="Decrypt Grade" />
         </form>
