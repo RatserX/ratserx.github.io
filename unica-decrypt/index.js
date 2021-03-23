@@ -1,5 +1,14 @@
 const decryptGrade = (encryptedGrade) => {
     let encryptedGradeSubstring = encryptedGrade.substring(1, 3);
+
+    switch (encryptedGradeSubstring)
+    {
+        case "DE":
+            return -1; // NSP
+        case "^_":
+            return -2; // DPI
+    }
+
     let encryptedGradeCharacters = [...encryptedGradeSubstring];
     encryptedGradeCharacters = encryptedGradeCharacters.reverse();
 
@@ -43,18 +52,18 @@ const decryptGrade = (encryptedGrade) => {
         }
     }
 
-    let grade = 0;
+    let decryptedGrade = 0;
 
     for (const [index, encryptedGradeCharacter] of encryptedGradeCharacters.entries()) {
         let multiplier = Math.pow(10, encryptedGradeCharacters.length - index - 1);
 
         switch (index) {
             case 0:
-                grade += decryptFirstDigit(encryptedGradeCharacter) * multiplier;
+                decryptedGrade += decryptFirstDigit(encryptedGradeCharacter) * multiplier;
 
                 break;
             case 1:
-                grade += decryptSecondDigit(encryptedGradeCharacter) * multiplier;
+                decryptedGrade += decryptSecondDigit(encryptedGradeCharacter) * multiplier;
 
                 break;
             default:
@@ -62,5 +71,5 @@ const decryptGrade = (encryptedGrade) => {
         }
     }
 
-    return grade;
+    return decryptedGrade;
 }
