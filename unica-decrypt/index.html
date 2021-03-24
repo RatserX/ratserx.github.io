@@ -1,10 +1,36 @@
 <html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+        <link rel="stylesheet" href="index.css">
+    </head>
     <body>
-        <form onsubmit="alert('Nota: ' + decryptGrade(this.encryptedGrade.value));return false;">
-            <label>Encrypted Grade</label>
-            <input type="text" name="encryptedGrade" />
-            <input type="submit" value="Decrypt Grade" />
-        </form>
+        <div id="container">
+            <table id="group">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <span>Grades</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Encrypted:</span>
+                    </td>
+                    <td>
+                        <input id="encrypted-grade" name="encryptedGrade" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Decrypted:</span>
+                    </td>
+                    <td>
+                        <input id="decrypted-grade" name="decryptedGrade" type="text" value="0" disabled="disabled" readonly="readonly" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <script src="decrypt.js"></script>
         <script src="index.js"></script>
     </body>
 </html>
